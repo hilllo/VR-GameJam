@@ -4,12 +4,18 @@ using System.Collections.Generic;
 
 public class GameManager : Singleton<GameManager> {
 
+    #region Fields
+
     [SerializeField]
     private float _LimitedTime = 2.0f;
 
     private Dictionary<int, HarmfulObj> _DetectedHarmfulObjs;
     private float _Timer = 0.0f;
     private float _TimeToBeDisplayed = 1.0f;
+
+    #endregion Fields
+
+    #region Properties
 
     public float LimitedTime
     {
@@ -19,9 +25,13 @@ public class GameManager : Singleton<GameManager> {
         }
     }
 
-	void Start () {
+    #endregion Properties
+
+    #region MonoBehaviour
+
+    void Start () {
         this._DetectedHarmfulObjs = new Dictionary<int, HarmfulObj>();
-	}
+    }
 
     void Update()
     {
@@ -30,19 +40,25 @@ public class GameManager : Singleton<GameManager> {
             this._Timer += Time.deltaTime;
             if(this._Timer > this._TimeToBeDisplayed)
             {
-                // TODO: sth to do with HUD
-                Debug.Log(string.Format("Timer: {0}", this._TimeToBeDisplayed.ToString()));
+                //Debug.Log(string.Format("Timer: {0}", this._TimeToBeDisplayed.ToString()));
+                UIManager.Instance.UpdateHarmfulTimeTxt(this._TimeToBeDisplayed);
                 this._TimeToBeDisplayed += 1.0f;
             }
         }
         else if (this._Timer > 0.0f)
         {
-            Debug.Log(string.Format("Timer: Clear"));
+            //Debug.Log(string.Format("Timer: Clear"));
             this._Timer = 0.0f;
             this._TimeToBeDisplayed = 1.0f;
-            // TODO: sth to do with HUD
+
+            UIManager.Instance.ClearHarmfulObjCountTxt();
+            UIManager.Instance.ClearHarmfulTimeTxt();
         }
     }
+
+    #endregion MonoBehaviour
+
+    #region Detected HarmfulObj
 
     public void AddHarmfulObj(int id, HarmfulObj harmfulObj)
     {
@@ -56,8 +72,8 @@ public class GameManager : Singleton<GameManager> {
         }
 
         this._DetectedHarmfulObjs.Add(id, harmfulObj);
-        Debug.Log(string.Format("GM: Added {0} in _DetectedHarmfulObjs (Count = {1})", id.ToString(), this._DetectedHarmfulObjs.Count.ToString()));
-
+        //Debug.Log(string.Format("GM: Added {0} in _DetectedHarmfulObjs (Count = {1})", id.ToString(), this._DetectedHarmfulObjs.Count.ToString()));
+        UIManager.Instance.UpdateHarmfulObjCountTxt(this._DetectedHarmfulObjs.Count);
     }
 
     public void RemoveHarmfulObj(int id)
@@ -71,10 +87,10 @@ public class GameManager : Singleton<GameManager> {
         }
 
         this._DetectedHarmfulObjs.Remove(id);
-        Debug.Log(string.Format("GM: Removed {0} in _DetectedHarmfulObjs (Count = {1})", id.ToString(), this._DetectedHarmfulObjs.Count.ToString()));
-
+        //Debug.Log(string.Format("GM: Removed {0} in _DetectedHarmfulObjs (Count = {1})", id.ToString(), this._DetectedHarmfulObjs.Count.ToString()));
+        UIManager.Instance.UpdateHarmfulObjCountTxt(this._DetectedHarmfulObjs.Count);
     }
 
-
+    #endregion Detected HarmfulObj
 
 }

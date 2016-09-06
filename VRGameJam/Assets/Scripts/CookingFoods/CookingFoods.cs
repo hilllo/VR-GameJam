@@ -57,13 +57,13 @@ public class CookingFoods : MonoBehaviour {
 
     protected virtual void OnStart()
     {
-
+        // Override for each subclass
     }
 
 
     protected virtual void OnUpdate()
     {
-
+        // Override for each subclass
     }
 
     #endregion MonoBehaviour

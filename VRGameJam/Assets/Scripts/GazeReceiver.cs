@@ -6,8 +6,6 @@ public class GazeReceiver : MonoBehaviour {
     [SerializeField]
     private Transform _MainCameraTrans;
 
-
-
     [SerializeField]
     private bool _IsBeingGazed;
 

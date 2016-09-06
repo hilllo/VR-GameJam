@@ -75,8 +75,8 @@
     <Compile Include="Assets\Scripts\CookingFoods\CookingCube.cs" />
     <Compile Include="Assets\Scripts\CookingFoods\CookingFoods.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\GazeDetector.cs" />
-    <Compile Include="Assets\Scripts\GazeReceiver.cs" />
+    <Compile Include="Assets\Scripts\GazeDetector\GazeDetector.cs" />
+    <Compile Include="Assets\Scripts\GazeDetector\GazeReceiver.cs" />
     <Compile Include="Assets\Scripts\Legacy\BoomObj.cs" />
     <Compile Include="Assets\Scripts\Legacy\BoomObjManager.cs" />
     <Compile Include="Assets\Scripts\Legacy\HarmfulObj.cs" />

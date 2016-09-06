@@ -3,13 +3,85 @@ using System.Collections;
 
 public class GameManager : Singleton<GameManager> {
 
-	// Use this for initialization
-	void Start () {
-	
+    public enum GameStage
+    {
+        None = 0,
+        Start,
+        GameOver
+    }
+
+    #region Fields
+
+    [SerializeField]
+    private float _GameDuration;
+
+    #endregion Fields
+
+    #region Properties
+
+    public float GlobalTimer { get; private set; }
+    public int Score { get; private set; }
+    public GameStage Stage { get; private set; }
+
+    #endregion Properties
+
+    #region MonoBehaviour
+
+    void Start () {
+        this.GlobalTimer = 0.0f;
+        this.Score = 0;
+        this.Stage = GameStage.Start;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+        this.GlobalTimer += Time.deltaTime;
+        if (this.GlobalTimer > this._GameDuration)
+            this.TimesUp();
+            
+    }
+
+    #endregion MonoBehaviour
+
+    #region Score
+
+    public void GainScore(int score)
+    {
+        if (this.Stage == GameStage.GameOver)
+            return;
+
+        if (score <= 0)
+            throw new System.ArgumentException("Expected score > 0 for GainScore() function");
+
+        this.Score += score;
+    }
+
+    public void LoseScore(int score)
+    {
+        if (this.Stage == GameStage.GameOver)
+            return;
+
+        if (score <= 0)
+            throw new System.ArgumentException("Expected score > 0 for LoseScore() function");
+
+        if (score > this.Score)
+            throw new System.ArgumentException("Expected score < {0} for LoseScore() function", this.Score.ToString());
+
+        this.Score -= score;
+    }
+
+    #endregion Score
+
+    private void TimesUp()
+    {
+        this.Stage = GameStage.GameOver;
+        //TODO: Implement here.
+
+        this.GameOver();
+    }
+
+    private void GameOver()
+    {
+        //TODO: Implement here.
+    }
 }

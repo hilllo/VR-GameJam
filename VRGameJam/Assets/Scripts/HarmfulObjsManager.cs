@@ -13,7 +13,7 @@ public class HarmfulObjsManager : Singleton<HarmfulObjsManager> {
     private float _SpawningInterval = 2.0f;
 
     [SerializeField]
-    private float _Border = 5.0f; // TODO: Symmetrical 
+    private Vector3 _Border; // TODO: Symmetrical 
 
     [SerializeField]
     private float _BorderOffset = 0.5f;
@@ -36,8 +36,10 @@ public class HarmfulObjsManager : Singleton<HarmfulObjsManager> {
 
     private void SpawnObj()
     {
-        float spawnBorder = this._Border - this._BorderOffset;
-        Vector3 pos = new Vector3(Random.Range(-spawnBorder, spawnBorder), Random.Range(0.5f, spawnBorder + 5.0f), Random.Range(-spawnBorder, spawnBorder));
+        Vector3 pos = new Vector3(Random.Range(-this._Border.x + this._BorderOffset, this._Border.x - this._BorderOffset), 
+                                  Random.Range(this._BorderOffset, this._Border.y - this._BorderOffset), 
+                                  Random.Range(-this._Border.z + this._BorderOffset, this._Border.z - this._BorderOffset));
+
         GameObject newHarmfulObj = (GameObject) Instantiate(this._HarmfulObj, pos, this._HarmfulObj.transform.rotation);
         newHarmfulObj.transform.SetParent(this._HarmfulObjsTrans);
     }

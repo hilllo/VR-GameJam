@@ -7,6 +7,9 @@ public class GameManager : Singleton<GameManager> {
     #region Fields
 
     [SerializeField]
+    private Camera _MainCamera;
+
+    [SerializeField]
     private float _LimitedTime = 2.0f;
 
     private Dictionary<int, HarmfulObj> _DetectedHarmfulObjs;
@@ -16,6 +19,14 @@ public class GameManager : Singleton<GameManager> {
     #endregion Fields
 
     #region Properties
+
+    public Camera MainCamera
+    {
+        get
+        {
+            return this._MainCamera;
+        }
+    }
 
     public float LimitedTime
     {
@@ -35,7 +46,8 @@ public class GameManager : Singleton<GameManager> {
 
     void Update()
     {
-        if(this._DetectedHarmfulObjs.Count > 0)
+
+        if (this._DetectedHarmfulObjs.Count > 0)
         {
             this._Timer += Time.deltaTime;
             if(this._Timer > this._TimeToBeDisplayed)

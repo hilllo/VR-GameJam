@@ -10,19 +10,19 @@ public class HarmfulObj : MonoBehaviour {
 	
 	void Update () {
 
-        if (!this._HasAddedToGM && this._Renderer.isVisible)
-        {
-            //Debug.Log(string.Format("Detected HarmfulObj! {0}", Time.time.ToString()));
-            GameManager.Instance.AddHarmfulObj(this.GetInstanceID(), this);
-            this._HasAddedToGM = true;
+        //       if (!this._HasAddedToGM && this._Renderer.isVisible)
+        //       {
+        //           //Debug.Log(string.Format("Detected HarmfulObj! {0}", Time.time.ToString()));
+        //           GameManager.Instance.AddHarmfulObj(this.GetInstanceID(), this);
+        //           this._HasAddedToGM = true;
 
-        }
-        else if (this._HasAddedToGM && !this._Renderer.isVisible)
-        {
-            //Debug.Log(string.Format("Removed HarmfulObj! {0}", Time.time.ToString()));
-            GameManager.Instance.RemoveHarmfulObj(this.GetInstanceID());
-            this._HasAddedToGM = false;
-        }
-            
-	}
+        //       }
+        //       else if (this._HasAddedToGM && !this._Renderer.isVisible)
+        //       {
+        //           //Debug.Log(string.Format("Removed HarmfulObj! {0}", Time.time.ToString()));
+        //           GameManager.Instance.RemoveHarmfulObj(this.GetInstanceID());
+        //           this._HasAddedToGM = false;
+        //       }
+
+    }
 }

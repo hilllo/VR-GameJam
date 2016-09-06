@@ -30,12 +30,15 @@ public class SteamVR_GazeTracker : MonoBehaviour
     {
         if (GazeOn != null)
             GazeOn(this, e);
+
+        Debug.Log("!!!!!!");
     }
 
     public virtual void OnGazeOff(GazeEventArgs e)
     {
         if (GazeOff != null)
             GazeOff(this, e);
+        Debug.Log("???????");
     }
 
     // Update is called once per frame
@@ -57,6 +60,7 @@ public class SteamVR_GazeTracker : MonoBehaviour
 
         if (hmdTrackedObject)
         {
+            Debug.Log(string.Format("{0}", hmdTrackedObject.gameObject.name.ToString()));
             Ray r = new Ray(hmdTrackedObject.position, hmdTrackedObject.forward);
             Plane p = new Plane(hmdTrackedObject.forward, transform.position);
 

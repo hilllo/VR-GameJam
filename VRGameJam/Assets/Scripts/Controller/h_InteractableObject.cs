@@ -74,7 +74,7 @@ public class h_InteractableObject : MonoBehaviour {
     /// </summary>
     protected virtual void OnStart()
     {
-        this._InteractionPoint = new GameObject().transform;
+        this._InteractionPoint = this.transform;
     }
 
     #endregion MonoBehaviour

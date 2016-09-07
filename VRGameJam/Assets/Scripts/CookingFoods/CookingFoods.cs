@@ -9,9 +9,6 @@ public class CookingFoods : MonoBehaviour {
     protected GazeReceiver _GazeReceiver;
 
     [SerializeField]
-    protected Renderer _Renderer;
-
-    [SerializeField]
     protected float _PerfectlyCookDuration;
 
     [SerializeField]

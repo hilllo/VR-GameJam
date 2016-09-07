@@ -23,11 +23,21 @@ public class GameManager : Singleton<GameManager> {
     public int Score { get; private set; }
     public GameStage Stage { get; private set; }
 
+    public float TimeLeft
+    {
+        get
+        {
+            return Mathf.Clamp(this._GameDuration - this.GlobalTimer,0f,this._GameDuration);
+        }
+    }
+
     #endregion Properties
 
     #region MonoBehaviour
 
     void Start () {
+        //Debug.Log(this.gameObject.name);
+
         this.GlobalTimer = 0.0f;
         this.Score = 0;
         this.Stage = GameStage.Start;

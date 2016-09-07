@@ -9,6 +9,11 @@ public class GazeReceiver : MonoBehaviour {
     [SerializeField]
     private bool _IsBeingGazed;
 
+    void Start()
+    {
+        this._MainCameraTrans = Camera.main.transform;
+    }
+
     void Update()
     {
         if(this._MainCameraTrans != null)

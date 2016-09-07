@@ -11,7 +11,8 @@ public class GazeReceiver : MonoBehaviour {
 
     void Update()
     {
-        this.transform.LookAt(this._MainCameraTrans.position);
+        if(this._MainCameraTrans != null)
+            this.transform.LookAt(this._MainCameraTrans.position);
     }
 
     public bool IsBeingGazed

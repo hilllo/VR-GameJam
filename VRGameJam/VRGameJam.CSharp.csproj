@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\Controller\h_PickableObject.cs" />
     <Compile Include="Assets\Scripts\Controller\h_WandController.cs" />
     <Compile Include="Assets\Scripts\CookingFoods\CookingCube.cs" />
+    <Compile Include="Assets\Scripts\CookingFoods\CookingCubesManager.cs" />
     <Compile Include="Assets\Scripts\CookingFoods\CookingFoods.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\GazeDetector\GazeDetector.cs" />

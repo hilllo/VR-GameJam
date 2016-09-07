@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public class GazeDetector : MonoBehaviour {
+public class GazeDetector : Singleton<GazeDetector> {
 
     [SerializeField]
     private Camera _MainCamera;
@@ -12,6 +12,14 @@ public class GazeDetector : MonoBehaviour {
     private LayerMask _DetectLayerMask;
 
     private List<RaycastHit> _RaycastHitList;
+
+    public Camera MainCamera
+    {
+        get
+        {
+            return this._MainCamera;
+        }
+    }
 
     void Start()
     {

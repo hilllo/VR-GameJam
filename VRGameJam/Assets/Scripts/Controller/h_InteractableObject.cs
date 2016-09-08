@@ -18,7 +18,7 @@ public class h_InteractableObject : MonoBehaviour {
     /// <summary>
     /// The _InteractionPoint of the object
     /// </summary>
-    private Transform _InteractionPoint;
+    private GameObject _InteractionPoint;
 
     #endregion Fields
 
@@ -49,7 +49,7 @@ public class h_InteractableObject : MonoBehaviour {
     /// <summary>
     /// The _InteractionPoint of the object
     /// </summary>
-    protected Transform InteractionPoint
+    protected GameObject InteractionPoint
     {
         get
         {
@@ -74,7 +74,8 @@ public class h_InteractableObject : MonoBehaviour {
     /// </summary>
     protected virtual void OnStart()
     {
-        this._InteractionPoint = this.transform;
+        this._InteractionPoint = new GameObject("InteractionPoint");
+        this._InteractionPoint.transform.SetParent(this.transform,true);
     }
 
     #endregion MonoBehaviour
@@ -85,9 +86,8 @@ public class h_InteractableObject : MonoBehaviour {
     public void StartInteraction(h_WandController wand)
     {
         this._AttachedWand = wand;
-        this._InteractionPoint.position = wand.transform.position;
-        this._InteractionPoint.rotation = wand.transform.rotation;
-        this._InteractionPoint.SetParent(this.transform, true);
+        this._InteractionPoint.transform.position = wand.transform.position;
+        this._InteractionPoint.transform.rotation = wand.transform.rotation;
 
         this._IsInteracting = true;
     }

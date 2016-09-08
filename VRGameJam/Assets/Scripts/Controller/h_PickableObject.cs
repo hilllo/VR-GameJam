@@ -47,10 +47,10 @@ public class h_PickableObject : h_InteractableObject {
     void Update () {
         if (this.AttachedWand && this.IsInteracting)
         {
-            Vector3 posDelta = this.AttachedWand.transform.position - this.InteractionPoint.position;
+            Vector3 posDelta = this.AttachedWand.transform.position - this.InteractionPoint.transform.position;
             this._Rigidbody.velocity = posDelta * this._VelocityFactor * Time.fixedDeltaTime;
 
-            Quaternion rotationDelta = this.AttachedWand.transform.rotation * Quaternion.Inverse(this.InteractionPoint.rotation);
+            Quaternion rotationDelta = this.AttachedWand.transform.rotation * Quaternion.Inverse(this.InteractionPoint.transform.rotation);
 
             float angle;
             Vector3 axis;

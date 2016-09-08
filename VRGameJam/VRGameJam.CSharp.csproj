@@ -69,6 +69,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\BurgerContent.cs" />
     <Compile Include="Assets\Scripts\Controller\h_InteractableObject.cs" />
     <Compile Include="Assets\Scripts\Controller\h_PickableObject.cs" />
     <Compile Include="Assets\Scripts\Controller\h_WandController.cs" />
@@ -78,14 +79,17 @@
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\GazeDetector\GazeDetector.cs" />
     <Compile Include="Assets\Scripts\GazeDetector\GazeReceiver.cs" />
+    <Compile Include="Assets\Scripts\InteractableItem.cs" />
     <Compile Include="Assets\Scripts\Legacy\BoomObj.cs" />
     <Compile Include="Assets\Scripts\Legacy\BoomObjManager.cs" />
     <Compile Include="Assets\Scripts\Legacy\HarmfulObj.cs" />
     <Compile Include="Assets\Scripts\Legacy\HarmfulObjsManager.cs" />
     <Compile Include="Assets\Scripts\Singleton.cs" />
+    <Compile Include="Assets\Scripts\Sizzle.cs" />
     <Compile Include="Assets\Scripts\StealerAI.cs" />
     <Compile Include="Assets\Scripts\StealerStealingAbility.cs" />
     <Compile Include="Assets\Scripts\UIManager.cs" />
+    <Compile Include="Assets\Scripts\WandController.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_LaserPointer.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_Teleporter.cs" />

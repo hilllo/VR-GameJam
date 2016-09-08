@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Sizzle : MonoBehaviour {
+public class AngryKrabs : MonoBehaviour {
 
-    public AudioClip sizzleStart;
-    public AudioClip sizzleLoop;
+    public AudioClip spongebob;
 
     private bool started;
 
@@ -14,29 +13,29 @@ public class Sizzle : MonoBehaviour {
     private float lowrange = .75F;
     private float highrange = 1F;
 
-    [SerializeField]
-    private CookingFoods cookingscript;
+    void Awake()
+    {
+        started = false;
+    }
 
     void Update()
     {
-        if (InteractableItem.iscooking )//cookingscript.IsCooking == true)
+        if (InteractableItem.onFloor)
         {
-            audio.pitch = Random.Range(lowrange, highrange);
+            audio.pitch = 1F;
             audio.loop = true;
             if (started == false)
             {
+                audio.clip = spongebob;
+                Debug.Log("Play Spongebob SOUND NOW");
+
+                audio.PlayOneShot(spongebob, 1F);
                 started = true;
-                audio.PlayOneShot(sizzleStart, 1F);
             }
-
-            audio.clip = sizzleLoop;
-            audio.PlayOneShot(sizzleLoop, .2F);
-
 
         }
         else
         {
-            audio.clip = sizzleLoop;
             audio.loop = false;
             started = false;
             audio.Stop();

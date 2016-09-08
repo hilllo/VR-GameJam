@@ -90,6 +90,8 @@
     <Compile Include="Assets\Scripts\StealerStealingAbility.cs" />
     <Compile Include="Assets\Scripts\UIManager.cs" />
     <Compile Include="Assets\Scripts\WandController.cs" />
+    <Compile Include="Assets\Scripts\hBurger\hBurgerComponent.cs" />
+    <Compile Include="Assets\Scripts\hBurger\hBurgerDetectingZone.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_LaserPointer.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_Teleporter.cs" />

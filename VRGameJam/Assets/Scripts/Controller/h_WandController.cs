@@ -114,6 +114,9 @@ public class h_WandController : MonoBehaviour {
         float distance;
         foreach(h_InteractableObject obj in this._ObjectsHoveringOver)
         {
+            if (obj == null)
+                continue;
+
             distance = (obj.transform.position - transform.position).sqrMagnitude;
 
             if(distance < minDistance)
@@ -122,7 +125,7 @@ public class h_WandController : MonoBehaviour {
                 minDistance = distance;
             }
         }
-
+        
         this._InteractingObject = this._ClosestObject;
         this._ClosestObject = null;
 

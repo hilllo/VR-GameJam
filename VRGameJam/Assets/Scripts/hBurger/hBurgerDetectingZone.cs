@@ -13,7 +13,7 @@ public class hBurgerDetectingZone : MonoBehaviour {
     private hBurgerComponent _BurgerComponent;
 
     [SerializeField]
-    private bool AutoAdjustment = true;	
+    private bool _AutoAdjustment = true;
 
     void OnTriggerEnter(Collider other)
     {
@@ -22,7 +22,7 @@ public class hBurgerDetectingZone : MonoBehaviour {
             hBurgerComponent burgerComponent = other.GetComponent<hBurgerComponent>();
             if(burgerComponent && !burgerComponent.HasBeenAttached)
             {
-                if (AutoAdjustment)
+                if (this._AutoAdjustment)
                 {
                     Vector3 newPos = this.gameObject.transform.position;
                     newPos.y += ( other.transform.localScale.y / 2.0f );
@@ -32,18 +32,21 @@ public class hBurgerDetectingZone : MonoBehaviour {
 
                     other.gameObject.transform.rotation = newQuat;
                 }
+
                 other.gameObject.transform.SetParent(this._Identity);
                 burgerComponent.AttachToBurger();
 
                 // Register all burger components above in this (current) gameObject's hBurgerComponent._AboveBurgerComponents
                 hBurgerComponent currentBaseBurgerComponent = this._BurgerComponent.CurrentBase.GetComponent<hBurgerComponent>();
-                currentBaseBurgerComponent._AboveBurgerComponents.AddRange(burgerComponent.CurrentBase.GetComponent<hBurgerComponent>()._AboveBurgerComponents);
+                currentBaseBurgerComponent.AboveBurgerComponents.AddRange(burgerComponent.CurrentBase.GetComponent<hBurgerComponent>().AboveBurgerComponents);                
 
                 // Change every bases of components above to this (current) gameObject
-                foreach(GameObject childrenBurgerComponent in burgerComponent._AboveBurgerComponents)
+                foreach (GameObject childrenBurgerComponent in burgerComponent.AboveBurgerComponents)
                 {
                     childrenBurgerComponent.GetComponent<hBurgerComponent>().CurrentBase = this._BurgerComponent.CurrentBase;
                 }
+
+                currentBaseBurgerComponent.HasTop = burgerComponent.HasTop;               
 
                 // Remove Detecting Zone
                 Destroy(this.gameObject);

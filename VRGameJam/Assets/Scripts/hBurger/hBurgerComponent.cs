@@ -13,16 +13,17 @@ public class hBurgerComponent : MonoBehaviour {
     private GameObject _InteractionPoint;
 
     [SerializeField]
-    public List<GameObject> _AboveBurgerComponents;
+    public List<GameObject> AboveBurgerComponents;
 
-    public bool HasBeenAttached = false;
-
-    [SerializeField]
     public hBurgerComponent CurrentBase;
+
+    public bool HasTop = false;
+
+    public bool HasBeenAttached { get; private set; }
 
     void Start()
     {
-        this._AboveBurgerComponents.Add(this.gameObject);
+        this.AboveBurgerComponents.Add(this.gameObject);
         this.CurrentBase = this;
     }
 

@@ -26,7 +26,7 @@ public class StealerStealingAbility : MonoBehaviour {
 
         Debug.Log(other.gameObject.name);
         //other.transform.Translate(this._StealerTrans.position * Time.deltaTime);
-        if (other.gameObject.tag == "Food")
+        if (other.gameObject.tag == "Food" || other.gameObject.tag == "BurgerComponent")
         {
             other.GetComponent<Rigidbody>().AddForce(Vector3.up * this._ForceValue);
         }            

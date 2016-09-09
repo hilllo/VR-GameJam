@@ -14,7 +14,8 @@ public class StealerAI : MonoBehaviour {
         EXITING,
         DONE,
         STARTDYING,
-        DIE
+        DIE,
+        NONE
     }
 
     #region Fields
@@ -49,8 +50,6 @@ public class StealerAI : MonoBehaviour {
     private float _PosLerpT;
     private int _CurrentSpotIndex = 0;
 
-    private bool _HasBeenHit = false;
-
     #endregion Fields
 
     #region Properties
@@ -63,6 +62,8 @@ public class StealerAI : MonoBehaviour {
     #region MonoBehaviour
 
     void Start () {
+        this._AiPathGO = GameObject.FindGameObjectWithTag("AIPath");
+
         this._AiSpots = new List<Transform>();
         this._AiPathGO.transform.GetComponentsInChildren<Transform>(this._AiSpots);
 
@@ -124,7 +125,7 @@ public class StealerAI : MonoBehaviour {
         {
             this.Stage = StealerStage.STARTDYING;            
         }
-        if(collision.gameObject.tag == "Food")
+        if(collision.gameObject.tag == "Food" || collision.gameObject.tag == "BurgerComponent")
         {
             this._StealerStealingAbility.StealABurger(collision.gameObject);
         }
@@ -177,8 +178,12 @@ public class StealerAI : MonoBehaviour {
     private IEnumerator CoDone()
     {
         this.StoleBurgerCount = this._StealerStealingAbility.GetStolenBurgerCount();
+
         // TODO: GM - Change score here
-        yield return new WaitForSeconds(0.1f);
+        GameManager.Instance.LoseScore(this.StoleBurgerCount * 8);
+
+        this.Stage = StealerStage.NONE;
+        yield return new WaitForSeconds(0.01f);
         Destroy(this.gameObject);
     }
 

@@ -27,6 +27,9 @@ public class GameManager : Singleton<GameManager> {
     {
         get
         {
+            if (this.Stage == GameStage.GameOver)
+                return 0.0f;
+
             return Mathf.Clamp(this._GameDuration - this.GlobalTimer,0f,this._GameDuration);
         }
     }
@@ -74,8 +77,8 @@ public class GameManager : Singleton<GameManager> {
         if (score <= 0)
             throw new System.ArgumentException("Expected score > 0 for LoseScore() function");
 
-        if (score > this.Score)
-            throw new System.ArgumentException("Expected score < {0} for LoseScore() function", this.Score.ToString());
+        //if (score > this.Score)
+        //    throw new System.ArgumentException("Expected score < {0} for LoseScore() function", this.Score.ToString());
 
         this.Score -= score;
     }

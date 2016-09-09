@@ -15,6 +15,27 @@ public class SoundManager : Singleton<SoundManager> {
 
     public int index;
 
+
+    public AudioSource Play(AudioClip clip, Vector3 point, float volume, float pitch)
+    {
+        //Create an empty game object
+        GameObject go = new GameObject("Audio: " + clip.name);
+        go.transform.position = point;
+
+        //Create the source
+        AudioSource source = go.AddComponent<AudioSource>();
+        source.clip = clip;
+        source.volume = volume;
+        source.pitch = pitch;
+        source.Play();
+        Destroy(go, clip.length);
+        return source;
+    }
+
+    public void StopClip()
+    {
+
+    }
     public void PlaySingle(AudioClip clip)
     {
         efxSource.clip = clip;
@@ -24,7 +45,7 @@ public class SoundManager : Singleton<SoundManager> {
     public void OnFloorPlay()
     {
         efxSource.clip = krabssound;
-        efxSource.Play();
+        Play(krabssound, Vector3.zero, .4F, 1F);
     }
     public void StopOnFloorPlay()
     {
@@ -34,9 +55,9 @@ public class SoundManager : Singleton<SoundManager> {
 
     public void IsCookingPlay()
     {
-        efxSource.clip = sizzlesound;
-        efxSource.loop = true;
-        efxSource.PlayOneShot(sizzlesound, .5F);
+       // efxSource.clip = sizzlesound;
+        //efxSource.loop = true;
+        Play(sizzlesound, Vector3.zero, .4F, 1F);
     }
     
     public void StopIsCookingPlay()
@@ -48,16 +69,19 @@ public class SoundManager : Singleton<SoundManager> {
 
     public void PlanktonLaughPlay()
     {
-        index = Random.Range(0,1);
         if (index == 1)
         {
-            efxSource.clip = Plankton1;
-            efxSource.PlayOneShot(Plankton1, 1F);
+            //efxSource.clip = Plankton1;
+            //efxSource.PlayOneShot(Plankton1, 1F);
+            Play(Plankton1, Vector3.zero, .4F, 1F);
+            index = 0;
         }
         else
         {
-            efxSource.clip = Plankton2;
-            efxSource.PlayOneShot(Plankton2,1F);
+            ///efxSource.clip = Plankton2;
+            //efxSource.PlayOneShot(Plankton2,1F);
+            Play(Plankton2, Vector3.zero, .4F, 1F);
+            index = 1;
         }
     }
     public void StopPlaying()
@@ -68,14 +92,18 @@ public class SoundManager : Singleton<SoundManager> {
     public void PlayBeam()
     {
         efxSource.clip = BeamSound;
-
+       // Play(BeamSound, Vector3.zero, .4F, 1F);
         efxSource.Play();
     }
+    public void StopBeam()
+    {
+    }
+
     public void PlayShipSound()
     {
         //efxSource.clip = PropellerSound;
         efxSource.loop = true;
-        efxSource.Play();
+        //efxSource.Play();
     }
     public void EndShipSound()
     {

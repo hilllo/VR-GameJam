@@ -198,6 +198,7 @@ public class StealerAI : MonoBehaviour {
         this._MeshRenderer.enabled = false;
 
         yield return new WaitForSeconds(2.9f);
+
         Destroy(this.gameObject);
     }
 }

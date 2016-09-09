@@ -10,7 +10,7 @@ public class StealerManager : MonoBehaviour {
 
     void Update()
     {
-        if (this._SentStealerTimes == 2 && GameManager.Instance.TimeLeft < 45.0f)
+        if (this._SentStealerTimes == 2 && GameManager.Instance.TimeLeft < 60.0f)
         {
             Instantiate(this._Stealer);
             this._SentStealerTimes--;

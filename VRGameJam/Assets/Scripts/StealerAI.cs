@@ -30,7 +30,7 @@ public class StealerAI : MonoBehaviour {
     private StealerStealingAbility _StealerStealingAbility;
 
     [SerializeField]
-    private MeshRenderer _MeshRenderer;
+    private List<GameObject> _Models;
 
     [SerializeField]
     private Collider _Collider;
@@ -72,8 +72,8 @@ public class StealerAI : MonoBehaviour {
 
         // Move the the start spot
         this.transform.position = this._AiSpots[this._CurrentSpotIndex].position;
-        if (this._CurrentSpotIndex < this._AiSpots.Count - 1)
-            this.transform.LookAt(this._AiSpots[this._CurrentSpotIndex + 1]);
+        //if (this._CurrentSpotIndex < this._AiSpots.Count - 1)
+        //    this.transform.LookAt(this._AiSpots[this._CurrentSpotIndex + 1]);
 
         this.Stage = StealerStage.STARTENTERING;
     }
@@ -133,6 +133,7 @@ public class StealerAI : MonoBehaviour {
 
     private IEnumerator CoEntering()
     {
+        SoundManager.Instance.PlanktonLaughPlay();
         while (this._CurrentSpotIndex < this._AiSpots.Count - 1)
         {
             this._PosLerpT += Time.deltaTime / (this._EnteringDuration / this._AiSpots.Count);
@@ -143,7 +144,7 @@ public class StealerAI : MonoBehaviour {
                 if (this._CurrentSpotIndex < this._AiSpots.Count - 1)
                 {
                     this._PosLerpT = 0.0f;
-                    this.transform.LookAt(this._AiSpots[this._CurrentSpotIndex + 1]);
+                    //this.transform.LookAt(this._AiSpots[this._CurrentSpotIndex + 1]);
                 }
             }
             yield return null;
@@ -156,10 +157,14 @@ public class StealerAI : MonoBehaviour {
 
     private IEnumerator CoStealing()
     {
+        SoundManager.Instance.PlayBeam();
+
         this._StealerStealingAbility.IsStealing = true;
         yield return new WaitForSeconds(this._StealingDuration);
         this._StealerStealingAbility.IsStealing = false;
         this.Stage = StealerStage.STARTEXITING;
+
+        SoundManager.Instance.StopPlaying();
     }
 
     private IEnumerator CoExiting()
@@ -189,13 +194,20 @@ public class StealerAI : MonoBehaviour {
 
     private IEnumerator CoExplodeAndDie()
     {
+        SoundManager.Instance.PlayExplosion();
+
         this._ExplosionParticleGO.SetActive(true);
         this._Collider.isTrigger = true;
         this._StealerStealingAbility.IsStealing = false;
         this._StealerStealingAbility.DropStolenBurgers();
 
         yield return new WaitForSeconds(0.1f);
-        this._MeshRenderer.enabled = false;
+        //this._MeshRenderer.enabled = false;
+
+        foreach(GameObject childGameObject in this._Models)
+        {
+            childGameObject.SetActive(false);
+        }
 
         yield return new WaitForSeconds(2.9f);
 

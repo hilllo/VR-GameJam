@@ -36,13 +36,20 @@ public class hBurgerBase : MonoBehaviour {
             }
 
             // Calculate Score
-            for(int i = 0; i < this._CustomizedOrder.Length; i++)
+            int test;
+            for(test = 0; test < this._CustomizedOrder.Length; test++)
             {
-                if(this._CurrentOrder == this._CustomizedOrder[i].x)
+                if(this._CurrentOrder == this._CustomizedOrder[test].x)
                 {
-                    GameManager.Instance.GainScore((int)this._CustomizedOrder[i].y);
+                    GameManager.Instance.GainScore((int)this._CustomizedOrder[test].y);
+                    SoundManager.Instance.CorrectBurgerCompleted();
                     break;
                 }
+            }
+            if(test == this._CustomizedOrder.Length)
+            {
+                GameManager.Instance.GainScore(1);
+                SoundManager.Instance.OnFloorPlay();
             }
 
             this._HasFinished = true;

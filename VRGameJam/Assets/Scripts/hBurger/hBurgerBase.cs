@@ -13,6 +13,7 @@ public class hBurgerBase : MonoBehaviour {
     [SerializeField]
     private Vector2[] _CustomizedOrder;
 
+    [SerializeField]
     private int _CurrentOrder = 0;
 
     private bool _HasFinished = false;

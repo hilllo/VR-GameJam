@@ -74,7 +74,7 @@ public class GameManager : Singleton<GameManager> {
         if (this.Stage == GameStage.GameOver)
             return;
 
-        if (score <= 0)
+        if (score < 0)
             throw new System.ArgumentException("Expected score > 0 for LoseScore() function");
 
         //if (score > this.Score)

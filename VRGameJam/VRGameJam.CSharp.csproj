@@ -77,9 +77,11 @@
     <Compile Include="Assets\Scripts\CookingFoods\CookingCube.cs" />
     <Compile Include="Assets\Scripts\CookingFoods\CookingCubesManager.cs" />
     <Compile Include="Assets\Scripts\CookingFoods\CookingFoods.cs" />
+    <Compile Include="Assets\Scripts\CookingFoods\CookingPatty.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\GazeDetector\GazeDetector.cs" />
     <Compile Include="Assets\Scripts\GazeDetector\GazeReceiver.cs" />
+    <Compile Include="Assets\Scripts\GrillingAbility.cs" />
     <Compile Include="Assets\Scripts\IngredientsBox.cs" />
     <Compile Include="Assets\Scripts\InteractableItem.cs" />
     <Compile Include="Assets\Scripts\Legacy\BoomObj.cs" />

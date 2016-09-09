@@ -43,11 +43,18 @@ public class GameManager : Singleton<GameManager> {
 
         this.GlobalTimer = 0.0f;
         this.Score = 0;
-        this.Stage = GameStage.Start;
+        this.Stage = GameStage.None;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (Input.GetKeyDown(KeyCode.P))
+            this.Stage = GameStage.Start;
+
+        if (this.Stage == GameStage.None || this.Stage == GameStage.GameOver)
+            return;
+
         this.GlobalTimer += Time.deltaTime;
         if (this.GlobalTimer > this._GameDuration)
             this.TimesUp();
@@ -60,7 +67,7 @@ public class GameManager : Singleton<GameManager> {
 
     public void GainScore(int score)
     {
-        if (this.Stage == GameStage.GameOver)
+        if (this.Stage == GameStage.None || this.Stage == GameStage.GameOver)
             return;
 
         if (score <= 0)
@@ -71,7 +78,7 @@ public class GameManager : Singleton<GameManager> {
 
     public void LoseScore(int score)
     {
-        if (this.Stage == GameStage.GameOver)
+        if (this.Stage == GameStage.None || this.Stage == GameStage.GameOver)
             return;
 
         if (score < 0)

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SoundManager : MonoBehaviour {
+public class SoundManager : Singleton<SoundManager> {
 
     public AudioSource BackgroundSong;
     public AudioSource efxSource;
@@ -14,23 +14,6 @@ public class SoundManager : MonoBehaviour {
     public AudioClip ExplosionSound;
 
     public int index;
-
-    public static SoundManager instance = null;
-
-    void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else if (instance != this)
-        {
-            Destroy(gameObject);
-        }
-
-        DontDestroyOnLoad(gameObject);
-
-    }
 
     public void PlaySingle(AudioClip clip)
     {

@@ -88,6 +88,7 @@
     <Compile Include="Assets\Scripts\Legacy\HarmfulObjsManager.cs" />
     <Compile Include="Assets\Scripts\Singleton.cs" />
     <Compile Include="Assets\Scripts\Sizzle.cs" />
+    <Compile Include="Assets\Scripts\SoundManager.cs" />
     <Compile Include="Assets\Scripts\SpawnIngredients.cs" />
     <Compile Include="Assets\Scripts\StealerAI.cs" />
     <Compile Include="Assets\Scripts\StealerManager.cs" />

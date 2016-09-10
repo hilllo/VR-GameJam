@@ -26,9 +26,15 @@ public class StealerStealingAbility : MonoBehaviour {
 
         Debug.Log(other.gameObject.name);
         //other.transform.Translate(this._StealerTrans.position * Time.deltaTime);
+        Rigidbody formerRigidbody = null;
         if (other.gameObject.tag == "Food" || other.gameObject.tag == "BurgerComponent")
         {
-            other.GetComponent<Rigidbody>().AddForce(Vector3.up * this._ForceValue);
+            Rigidbody baseRigidbody = other.GetComponent<hBurgerComponent>().CurrentBase.gameObject.GetComponent<Rigidbody>();
+            if(baseRigidbody != formerRigidbody)
+            {
+                baseRigidbody.AddForce(Vector3.up * this._ForceValue);
+                formerRigidbody = baseRigidbody;
+            }
         }            
     }
 
